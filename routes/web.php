@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChangeLanguage;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('change-language/{language}', [ChangeLanguage::class,'changeLanguage'])
+        ->name('user.change-language');
+    Route::get('/', function () {
+        return view('first_page');
+    });
 });
