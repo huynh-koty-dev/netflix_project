@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ChangeLanguage;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MovieController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +19,23 @@ use App\Http\Controllers\ChangeLanguage;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::group(['middleware' => 'locale'], function() {
     Route::get('change-language/{language}', [ChangeLanguage::class,'changeLanguage'])
         ->name('user.change-language');
-    Route::get('/', function () {
-        return view('first_page');
+    Route::middleware(['auth-user'])->group(function () {
+        Route::get('/',[MovieController::class,'index'])->name('home');
+        Route::get('/show/{name}/{id}',[MovieController::class,'show'])->name('detail');
+        Route::get('/{name}/watch={id}&episode={episode_id?}',[MovieController::class,'watchMovie'])->name('watch_movie');
     });
+    Route::post('/login_user',[UserController::class,'login'])->name('login_user');
+    Route::post('/register_user',[UserController::class,'register'])->name('register_user');
+    Route::get('/register',[UserController::class,'registerView'])->name('register_view');
+    Route::get('/intro',[UserController::class,'loginView'])->name('login_view');
+    Route::get('/logout',[UserController::class,'logout'])->name('logout');
+    Route::get('user/verify',[UserController::class,'verifyView'])->name('verify.email');
+    Route::get('user/reset',[UserController::class,'resetView'])->middleware('check_token')->name('reset_view');
+    Route::post('user/verify',[UserController::class,'verifyEmail'])->name('verify');
+    Route::post('resetPassword',[UserController::class,'resetPassword'])->name('reset.pass');
+    Route::get('check_token',[UserController::class,'checkTokenView'])->name('token_view');
+    Route::post('check_token',[UserController::class,'checkToken'])->name('check_token');
 });
