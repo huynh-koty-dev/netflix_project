@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        //Cohensive\Embed\EmbedServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -173,7 +174,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,   
 
     ],
 
@@ -227,6 +228,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Socialite' => Laravel\Socialite\SocialiteServiceProvider::class,
+        //'Embed' => Cohensive\Embed\Facades\Embed::class,
 
     ],
 

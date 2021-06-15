@@ -37,4 +37,8 @@ return [
 
     'close' => 'Đóng', 
     'password' => "Mật khẩu",
+    'remember_me' => 'Ghi nhớ tôi',
+    'user_name' => 'Tên người dùng',
+    'repassword' => 'Nhập lại mật khẩu',
+    'register' => 'Đăng ký',
 ];
