@@ -34,7 +34,10 @@ return [
     'quest_six' => "<p>The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and movies in their own space.</p>
                     <br>
                     <p>Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see.</p>",
-    //
     'close' => 'Close',
     'password' => "Password",
+    'remember_me' => 'Remember me',
+    'user_name' => 'User name',
+    'repassword' => 'Confirm Password',
+    'register' => 'Register',
 ];
