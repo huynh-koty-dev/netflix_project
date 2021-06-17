@@ -9,7 +9,7 @@
                 <p>{{ $showbanner->overview }}</p>
             </div>
             <div class="content-button">
-                <a href="{{ route('detail', ['name' => $showbanner->title, 'id' => $showbanner->movie_id]) }}" class="btn featured--watchbutton" type="button"><img src="{{ asset('icons/play.svg') }}">Play</a>
+                <a href="{{ route('detail', ['name' => $showbanner->title, 'id' => $showbanner->id]) }}" class="btn featured--watchbutton" type="button"><img src="{{ asset('icons/play.svg') }}">Play</a>
                 <button class="featured--mylistbutton" type="button"><img src="{{ asset('icons/plus.svg') }}">
                     Add Favourite</button>
             </div>
@@ -23,7 +23,7 @@
             @foreach ($recommends as $recommend)
                 <li class="item">
                     <div class="feature-box">
-                        <a href="#">
+                        <a href="{{ route('detail', ['name' => $recommend->title, 'id' => $recommend->id]) }}">
                             <img src="{{ asset('images/posters/'.$recommend->img) }}">
                         </a>
                     </div>

@@ -30,6 +30,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::middleware(['auth-user'])->group(function () {
         Route::get('/',[MovieController::class,'index'])->name('home');
         Route::get('/show/{name}/{id}',[MovieController::class,'show'])->name('detail');
+        Route::get('/{name}/watch={id}&episode={episode_id?}',[MovieController::class,'watchMovie'])->name('watch_movie');
     });
 
     Route::get('user/verify',[UserController::class,'verify_view'])->name('verify.email');

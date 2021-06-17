@@ -1,5 +1,5 @@
 <header>
-    <a href="" class="logo">
+    <a href="{{ route('home') }}" class="logo">
         <img src="{{ asset('images/logo-removebg-preview.png') }}">
     </a>
     <div class="menuToggle" onclick="toggleMenu()"></div>
