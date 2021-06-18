@@ -665,3 +665,34 @@
     position: relative;
     padding-top: 20px;
 }
+.bg-detail {
+    position:fixed;
+    opacity: 0.2;
+    border-radius:10px
+}
+.detail {
+    position:relative;
+    width:100%;
+}
+.posters-movie img {
+    margin-top:170px;
+    padding-left:50px;
+    width:350px;
+}
+.btn-film {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 120px;
+}
+/*.play-icon {*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    position: relative;*/
+
+/*}*/
+/*.play-icon img {*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    position: relative;*/
+/*}*/
+
