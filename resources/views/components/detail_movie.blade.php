@@ -1,13 +1,13 @@
 @extends('welcome')
 @section('movie_content')
     <div class="detail-content">
-        <img class="bg-detail" src="{{ asset('images/movies/loki.jpg') }}" alt="..." width="100%">
+        <img class="bg-detail" src="{{ asset('images/movies/'.$show_movie->background) }}" alt="..." width="100%">
         <div class="detail">
             <div class="container">
                 <div class="row justify-content-evenly">
                     <div class=".col-4 .col-sm-4">
                         <div class="posters-movie">
-                            <img src="{{ asset('images/posters/loki.jpeg') }}" alt="..."  >
+                            <img src="{{ asset('images/posters/'.$show_movie->img) }}" alt="..."  >
                             <div class="btn-film">
                                 <a style="color:#fff;" href="{{ route('watch_movie', ['name' => $show_movie->title, 'id' => $show_movie->id, 'episode_id' => session('episode')?session('episode'):1]) }}" class="btn btn-danger">xem phim</a>
                                 <a style="color:#fff" href="#" class="btn btn-primary">trailer</a>
@@ -17,17 +17,17 @@
                     </div>
                     <div class=".col-6 .col-sm-4">
                         <div class="detail-movie">
-                            <h1 style="position:relative"><a href="#" >Loki Thần Lừa Lọc</a> (2021)</h1>
+                            <h1 style="position:relative"><a href="#" >{{ $show_movie->title }}</a> ({{ $show_movie->release_date }})</h1>
                             <div class="facts">
                             <span class="certification">
                                 KD-19
                             </span>
                                 <span class="genres">
-                            &nbsp;&nbsp;<a href="#">Phim Chính Kịch</a>,&nbsp;<a href="#">Sci-Fi &amp; Fantasy</a>
+                            &nbsp;&nbsp;<a href="#">{{ $show_movie->name }}</a>
                             </span>
                                 &nbsp;
                                 <span class="runtime">
-                            *  &nbsp;52m
+                            *  &nbsp;
                             </span>
                             </div>
                             <div class="auto-actions">
@@ -36,7 +36,7 @@
                                         <div class="pie-chart">
                                             <div class="pie-chart__pie"></div>
                                             <ul style=" margin-top:-20px " class="pie-chart__legend">
-                                                <li><span style="color:black;margin-top:-16px;">80</span><span style="margin-top:-13px;">20</span><em style="color: black; width:100px">User Score:</em></li>
+                                                <li><span style="color:black;margin-top:-16px;">{{ $show_movie->votes_avg }}</span><span style="margin-top:-13px;">{{ 100 - $show_movie->votes_avg }}</span><em style="color: black; width:100px">Score:</em></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -47,14 +47,14 @@
                                 </div>
                             </div>
                             <div class="tagline">
-                                <h5><i>Thời của Loki đã tới</i> </h5>
+
                             </div>
                             <div class="overview">
                                 <h4>Overview</h4>
-                                <p>Khi Steve Rogers, Tony Stark và Scott Lang quay trở về cột mốc 2012, ngay khi trận chiến ở New York kết thúc, để “mượn tạm” quyền trượng của Loki. Nhưng một tai nạn bất ngờ xảy đến, khiến Loki nhặt được khối lặp phương Tesseract và tiện thể tẩu thoát. Cuộc trốn thoát này đã dẫn đến dòng thời gian bị rối loạn. Cục TVA – tổ chức bảo vệ tính nguyên vẹn của dòng chảy thời gian, buộc phải can thiệp, đi gô cổ ông thần này về làm việc. Tại đây, Loki có hai lựa chọn, một là giúp TVA ổn định lại thời gian, không thì bị tiêu hủy. Dĩ nhiên Loki chọn lựa chọn thứ nhất. Nhưng đây là nước đi vô cùng mạo hiểm, vì ông thần này thường lọc lừa, “lươn lẹo”, chuyên đâm lén như bản tính tự nhiên của gã.</p>
+                                <p>{{ $show_movie->overview }}</p>
                             </div>
                             <div class="profile">
-                                <h5>Michael Waldron</h5>
+                                <h5>{{ $show_movie->author }}</h5>
                                 <p>Creator</p>
                             </div>
                         </div>
@@ -66,54 +66,16 @@
                     <a href="">View all</a>
                 </div>
                 <div class="actors">
-                    <div class="item">
-                        <div class="feature-box">
-                            <a href="#">
-                                <img src="{{ asset('images/actors/loki.jpg') }}">
-                            </a>
+                    @foreach($show_actors as $actor)
+                        <div class="item">
+                            <div class="feature-box">
+                                <a href="#">
+                                    <img src="{{ asset('images/actors/'.$actor->act_avatar) }}">
+                                </a>
+                            </div>
+                            <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="#">{{ $actor->act_name }}</a></p>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
-                    </div>
-                    <div class="item">
-                        <div class="feature-box">
-                            <a href="#">
-                                <img src="{{ asset('images/actors/loki.jpg') }}">
-                            </a>
-                        </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
-                    </div>
-                    <div class="item">
-                        <div class="feature-box">
-                            <a href="#">
-                                <img src="{{ asset('images/actors/loki.jpg') }}">
-                            </a>
-                        </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
-                    </div>
-                    <div class="item">
-                        <div class="feature-box">
-                            <a href="#">
-                                <img src="{{ asset('images/actors/loki.jpg') }}">
-                            </a>
-                        </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
-                    </div>
-                    <div class="item">
-                        <div class="feature-box">
-                            <a href="#">
-                                <img src="{{ asset('images/actors/loki.jpg') }}">
-                            </a>
-                        </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
-                    </div>
-                    <div class="item">
-                        <div class="feature-box">
-                            <a href="#">
-                                <img src="{{ asset('images/actors/loki.jpg') }}">
-                            </a>
-                        </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- Current season -->
                 <div class="content-list-actors">

@@ -17,28 +17,35 @@ class MovieController extends Controller
         $showbanner = Movie::find($random);
         $recommends = Movie::all();
 
-        return view('components.home', ['showbanner' => $showbanner, 'recommends' => $recommends]);
+        return view('components.home', compact('showbanner', 'recommends'));
     }
 
     public function show($name, $id)
     {
-        $show_movie = Movie::find($id);
+        $show_movie = Movie::findOrFail($id)
+                        ->join('genres', 'genres.id', '=', 'movies.genre_id')
+                        ->get(['movies.*','genres.*'])
+                        ->first();
+        $show_actors =  Movie::findOrFail($id)
+                        ->join('actors', 'actors.movie_id', '=', 'movies.actor_id')
+                        ->take(6)
+                        ->get(['movies.*','actors.*']);
 
-        return view('components.detail_movie', ['show_movie' => $show_movie]);
+        return view('components.detail_movie', compact('show_movie', 'show_actors'));
     }
 
     public function watchMovie($name, $id, $episode_id, Request $request)
     {
-        $show_film = Movie::find($id)
+        $show_film = Movie::findOrFail($id)
                         ->join('episodes', 'episodes.movie_id', '=', 'movies.id')
                         ->where('episodes.id', $episode_id)
                         ->get(['episodes.*'])->first();
         $request->session()->put('episode', $show_film->episode);
-        $show_episode = Movie::find($id)
+        $show_episode = Movie::findOrFail($id)
                         ->join('episodes', 'episodes.movie_id', '=', 'movies.id')
                         ->get(['episodes.*']);
-        $show_movie = Movie::find($id);
+        $show_movie = Movie::findOrFail($id);
 
-        return view('components.watch_movie', ['show_film' => $show_film, 'show_episode' => $show_episode, 'show_movie' => $show_movie]);
+        return view('components.watch_movie', compact('show_film', 'show_episode', 'show_movie'));
     }
 }
