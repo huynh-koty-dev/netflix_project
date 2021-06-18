@@ -16,17 +16,17 @@ use Session;
 
 class UserController extends Controller
 {
-    public function login(LoginRequest $request) 
+    public function login(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-           
-            return redirect('/');
+
+            return redirect()->route('home');
         } else {
             // làm thêm chức năng khóa tài khoản
             return back()->with('error_login','Login failed!');
         }
     }
-    
+
     public function loginView()
     {
         if (Auth::check()) {
@@ -34,21 +34,22 @@ class UserController extends Controller
             return redirect('/');
         }
         VerifyUser::truncate();
+
         return view('first_page');
     }
 
-    public function registerView(Request $request) 
+    public function registerView(Request $request)
     {
         if (Auth::check()) {
 
-            return redirect('/');
+            return redirect()->route('home');
         }
 
         return view('components.register',['old_email' => $request->email_register]);
     }
 
     public function register(RegisterRequest $request)
-    {   
+    {
         $input = $request->all();
         $input['name'] = $request->nameUser;
         $input['email'] = $request->email_register;
@@ -61,17 +62,17 @@ class UserController extends Controller
 
             return back()->with('error_register','Register Failed!');
         }
-        
+
     }
 
-    public function logout() 
+    public function logout()
     {
         Auth::logout();
-        
+
         return redirect()->route('login_view');
     }
 
-    public function verify_view()
+    public function verifyView()
     {
         if (Auth::check()) {
 
@@ -96,10 +97,10 @@ class UserController extends Controller
             return  'sending email';
         } else {
             return back()->with('exist','email not exist!');
-        }    
+        }
     }
 
-    public function reset_view() 
+    public function resetView()
     {
         if (Auth::check()) {
 
@@ -109,7 +110,7 @@ class UserController extends Controller
         return view('emails.reset_password');
     }
 
-    public function reset_password(Request $request)
+    public function resetPassword(Request $request)
     {
         $request->validate([
             'reset_pass' => 'required',
@@ -117,7 +118,7 @@ class UserController extends Controller
         ]);
         $reset = User::where('email',$request->email)->first();
         $input = $request->all();
-        $input['password'] = Hash::make($request->reset_pass); 
+        $input['password'] = Hash::make($request->reset_pass);
         $result = $reset->update($input);
         if ($result > 0) {
             \Session::pull('pass_token');
@@ -129,7 +130,7 @@ class UserController extends Controller
         return back()->with('error', 'Fail!');
     }
 
-    public function check_token_view()
+    public function checkTokenView()
     {
         if (Auth::check()) {
 
@@ -139,7 +140,7 @@ class UserController extends Controller
         return view('emails.check_token');
     }
 
-    public function check_token(Request $request)
+    public function checkToken(Request $request)
     {
         $request->validate([
             'token' => 'required',

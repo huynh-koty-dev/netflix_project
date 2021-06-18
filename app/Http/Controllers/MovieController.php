@@ -17,8 +17,7 @@ class MovieController extends Controller
         $showbanner = Movie::find($random);
         $recommends = Movie::all();
 
-        return view('components.home',['showbanner' => $showbanner, 'recommends' => $recommends]);
-
+        return view('components.home', ['showbanner' => $showbanner, 'recommends' => $recommends]);
     }
 
     public function show($name, $id)
@@ -31,12 +30,12 @@ class MovieController extends Controller
     public function watchMovie($name, $id, $episode_id, Request $request)
     {
         $show_film = Movie::find($id)
-                        ->join('episodes','episodes.movie_id','=','movies.id')
+                        ->join('episodes', 'episodes.movie_id', '=', 'movies.id')
                         ->where('episodes.id', $episode_id)
                         ->get(['episodes.*'])->first();
         $request->session()->put('episode', $show_film->episode);
         $show_episode = Movie::find($id)
-                        ->join('episodes','episodes.movie_id','=','movies.id')
+                        ->join('episodes', 'episodes.movie_id', '=', 'movies.id')
                         ->get(['episodes.*']);
         $show_movie = Movie::find($id);
 
