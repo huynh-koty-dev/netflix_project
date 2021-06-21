@@ -1,19 +1,14 @@
 @extends('welcome')
 @section('movie_content')
     <div class="detail-content">
-        <img class="bg-detail" src="{{ asset('images/movies/loki.jpg') }}" alt="..." width="100%">
-        <div class="detail">
+        <img style="position:fixed;opacity: 0.2; border-radius:10px" src="{{ asset('images/movies/loki.jpg') }}" alt="..." width="100%">
+        <div class="detail" style="position:relative;width:100%">
             <div class="container">
                 <div class="row justify-content-evenly">
                     <div class=".col-4 .col-sm-4">
                         <div class="posters-movie">
-                            <img src="{{ asset('images/posters/loki.jpeg') }}" alt="..."  >
-                            <div class="btn-film">
-                                <a style="color:#fff;" href="{{ route('watch_movie', ['name' => $show_movie->title, 'id' => $show_movie->id, 'episode_id' => session('episode')?session('episode'):1]) }}" class="btn btn-danger">xem phim</a>
-                                <a style="color:#fff" href="#" class="btn btn-primary">trailer</a>
-                            </div>
+                            <img style="margin-top:170px; padding-left:50px" src="{{ asset('images/posters/loki.jpeg') }}" alt="..." width="350px">
                         </div>
-
                     </div>
                     <div class=".col-6 .col-sm-4">
                         <div class="detail-movie">
@@ -231,4 +226,11 @@
         createPieCharts();
 
     </script>
+
+@endsection
+    <div class="content detail" style="color:#fff;display: flex;
+    justify-content: center;">
+        <a style="color:#fff;" href="{{ route('watch_movie', ['name' => $show_movie->title, 'id' => $show_movie->id, 'episode_id' => session('episode')?session('episode'):1]) }}" class="btn btn-danger">xem phim</a>
+        <a style="color:#fff" href="#" class="btn btn-primary">trailer</a>
+    </div>
 @endsection
