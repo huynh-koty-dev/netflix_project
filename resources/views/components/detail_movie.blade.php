@@ -1,23 +1,23 @@
 @extends('welcome')
 @section('movie_content')
     <div class="detail-content">
-        <img class="bg-detail" src="{{ asset('images/movies/loki.jpg') }}" alt="..." width="100%">
+        <img class="bg-img" src="{{ asset('images/movies/loki.jpg') }}" alt="..." width="100%">
         <div class="detail">
             <div class="container">
                 <div class="row justify-content-evenly">
                     <div class=".col-4 .col-sm-4">
                         <div class="posters-movie">
-                            <img src="{{ asset('images/posters/loki.jpeg') }}" alt="..."  >
-                            <div class="btn-film">
-                                <a style="color:#fff;" href="{{ route('watch_movie', ['name' => $show_movie->title, 'id' => $show_movie->id, 'episode_id' => session('episode')?session('episode'):1]) }}" class="btn btn-danger">xem phim</a>
-                                <a style="color:#fff" href="#" class="btn btn-primary">trailer</a>
-                            </div>
+                            <img src="{{ asset('images/posters/loki_poster.jpg') }}" alt="..." width="350px">
                         </div>
-
+                        <div class="btn-film">
+                            <a href="{{ route('watch_movie', ['name' => $show_movie->title, 'id' => $show_movie->id, 'episode_id' => session('episode')?session('episode'):1]) }}" class="btn btn-danger">xem phim</a>
+                            &nbsp;
+                            <a href="#" class="btn btn-primary">trailer</a>
+                        </div>
                     </div>
                     <div class=".col-6 .col-sm-4">
                         <div class="detail-movie">
-                            <h1 style="position:relative"><a href="#" >Loki Thần Lừa Lọc</a> (2021)</h1>
+                            <h1><a href="#" >Loki Thần Lừa Lọc</a> (2021)</h1>
                             <div class="facts">
                             <span class="certification">
                                 KD-19
@@ -35,8 +35,8 @@
                                     <div class="pieID--micro-skills pie-chart--wrapper">
                                         <div class="pie-chart">
                                             <div class="pie-chart__pie"></div>
-                                            <ul style=" margin-top:-20px " class="pie-chart__legend">
-                                                <li><span style="color:black;margin-top:-16px;">80</span><span style="margin-top:-13px;">20</span><em style="color: black; width:100px">User Score:</em></li>
+                                            <ul class="pie-chart__legend">
+                                                <li><span>{{ $show_movie->votes_avg }}</span><span style="margin-top:-13px; color: white">{{ 100 - $show_movie->votes_avg }}</span><em>User Score:</em></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                 <img src="{{ asset('images/actors/loki.jpg') }}">
                             </a>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
+                        <p><a class="name-movie" href="">Tom Hiddleston</a></p>
                     </div>
                     <div class="item">
                         <div class="feature-box">
@@ -80,7 +80,7 @@
                                 <img src="{{ asset('images/actors/loki.jpg') }}">
                             </a>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
+                        <p>Tom Hiddleston</a></p>
                     </div>
                     <div class="item">
                         <div class="feature-box">
@@ -88,7 +88,7 @@
                                 <img src="{{ asset('images/actors/loki.jpg') }}">
                             </a>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
+                        <p><a class="name-movie" href="">Tom Hiddleston</a></p>
                     </div>
                     <div class="item">
                         <div class="feature-box">
@@ -96,7 +96,7 @@
                                 <img src="{{ asset('images/actors/loki.jpg') }}">
                             </a>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
+                        <p><a class="name-movie" href="">Tom Hiddleston</a></p>
                     </div>
                     <div class="item">
                         <div class="feature-box">
@@ -104,7 +104,7 @@
                                 <img src="{{ asset('images/actors/loki.jpg') }}">
                             </a>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
+                        <p><a class="name-movie" href="">Tom Hiddleston</a></p>
                     </div>
                     <div class="item">
                         <div class="feature-box">
@@ -112,28 +112,12 @@
                                 <img src="{{ asset('images/actors/loki.jpg') }}">
                             </a>
                         </div>
-                        <p style="margin-top: 10px;color:white; position:relative;width:180px; text-align:center"><a class="name-movie" href="">Tom Hiddleston</a></p>
+                        <p><a class="name-movie" href="">Tom Hiddleston</a></p>
                     </div>
                 </div>
                 <!-- Current season -->
-                <div class="content-list-actors">
-                    <h3>Current Season</h3>
-                    <a href="">View all</a>
-                </div>
-                <div class="item">
-                    <div class="box-season">
-                        <a href="#">
-                            <img src="{{ asset('images/posters/loki.jpg') }}">
-                        </a>
-                    </div>
-                    <div class="content-season">
-                        <h3><a href=""><b>Seasion 1</b> </a> </h3>
-                        <span><b>2021 | 6 Episodes</b></span><br>
-                        <span>Season 1 of Loki Thần Lừa Lọc premiered on June 9, 2021.</span>
-                    </div>
-                </div>
-                <!--  film -->
 
+                <!--  film -->
             </div>
         </div>
     </div>
@@ -227,8 +211,6 @@
             createPie('.pieID--categories' );
             createPie('.pieID--operations' );
         }
-
         createPieCharts();
-
     </script>
 @endsection
